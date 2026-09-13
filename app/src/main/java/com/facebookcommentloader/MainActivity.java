@@ -60,24 +60,4 @@ public class MainActivity extends Activity {
 
         setContentView(layout);
     }
-}            );
-            startActivity(intent);
-        });
-
-        layout.addView(title);
-        layout.addView(info);
-        layout.addView(accessibilityButton);
-
-        setContentView(layout);
-    }
-}            );
-            startActivity(intent);
-        });
-
-        layout.addView(title);
-        layout.addView(info);
-        layout.addView(settingsButton);
-
-        setContentView(layout);
-    }
 }
