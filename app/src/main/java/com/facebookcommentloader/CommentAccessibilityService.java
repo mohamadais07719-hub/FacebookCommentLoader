@@ -1,15 +1,12 @@
 package com.facebookcommentloader;
 
 import android.accessibilityservice.AccessibilityService;
-import android.os.Handler;
-import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
+import android.view.accessibility.AccessibilityEvent;
 
 public class CommentAccessibilityService extends AccessibilityService {
 
-    private final Handler handler = new Handler();
-
-    private boolean running = false;
+    private static volatile boolean running = false;
 
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
@@ -24,12 +21,16 @@ public class CommentAccessibilityService extends AccessibilityService {
             return;
         }
 
-        boolean clicked = false;
-
-        clicked = clickMatchingText(root, "عرض المزيد من التعليقات");
+        boolean clicked = clickMatchingText(
+                root,
+                "عرض المزيد من التعليقات"
+        );
 
         if (!clicked) {
-            clicked = clickMatchingText(root, "عرض المزيد من الردود");
+            clicked = clickMatchingText(
+                    root,
+                    "عرض المزيد من الردود"
+            );
         }
 
         if (!clicked) {
@@ -86,34 +87,16 @@ public class CommentAccessibilityService extends AccessibilityService {
         );
     }
 
-    public void startLoader() {
+    public static void startLoader() {
         running = true;
     }
 
-    public void stopLoader() {
+    public static void stopLoader() {
         running = false;
     }
 
     @Override
     public void onInterrupt() {
         running = false;
-    }
-}            );
-        }
-
-        for (int i = 0; i < node.getChildCount(); i++) {
-            AccessibilityNodeInfo child = node.getChild(i);
-
-            if (child != null
-                    && clickMatchingText(child, text)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    @Override
-    public void onInterrupt() {
     }
 }
