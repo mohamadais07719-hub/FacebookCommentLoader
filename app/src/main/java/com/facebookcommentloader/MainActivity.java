@@ -24,17 +24,27 @@ public class MainActivity extends Activity {
 
         TextView info = new TextView(this);
         info.setText(
-            "افتح منشور Facebook أولاً، ثم فعّل خدمة إمكانية الوصول."
+                "افتح منشور Facebook ثم شغّل الخدمة."
         );
         info.setTextSize(17);
 
-        Button settingsButton = new Button(this);
-        settingsButton.setText("فتح إعدادات إمكانية الوصول");
+        Button accessibilityButton = new Button(this);
+        accessibilityButton.setText("إعدادات إمكانية الوصول");
 
-        settingsButton.setOnClickListener(v -> {
+        accessibilityButton.setOnClickListener(v -> {
             Intent intent = new Intent(
-                Settings.ACTION_ACCESSIBILITY_SETTINGS
+                    Settings.ACTION_ACCESSIBILITY_SETTINGS
             );
+            startActivity(intent);
+        });
+
+        layout.addView(title);
+        layout.addView(info);
+        layout.addView(accessibilityButton);
+
+        setContentView(layout);
+    }
+}            );
             startActivity(intent);
         });
 
