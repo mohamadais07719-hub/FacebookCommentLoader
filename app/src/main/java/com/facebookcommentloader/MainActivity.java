@@ -23,9 +23,7 @@ public class MainActivity extends Activity {
         title.setTextSize(24);
 
         TextView info = new TextView(this);
-        info.setText(
-                "افتح منشور Facebook ثم شغّل الخدمة."
-        );
+        info.setText("افتح منشور Facebook ثم اضغط تشغيل.");
         info.setTextSize(17);
 
         Button accessibilityButton = new Button(this);
@@ -35,6 +33,34 @@ public class MainActivity extends Activity {
             Intent intent = new Intent(
                     Settings.ACTION_ACCESSIBILITY_SETTINGS
             );
+            startActivity(intent);
+        });
+
+        Button startButton = new Button(this);
+        startButton.setText("تشغيل");
+
+        startButton.setOnClickListener(v -> {
+            CommentAccessibilityService.startLoader();
+            info.setText("الخدمة تعمل الآن...");
+        });
+
+        Button stopButton = new Button(this);
+        stopButton.setText("إيقاف");
+
+        stopButton.setOnClickListener(v -> {
+            CommentAccessibilityService.stopLoader();
+            info.setText("تم إيقاف الخدمة.");
+        });
+
+        layout.addView(title);
+        layout.addView(info);
+        layout.addView(accessibilityButton);
+        layout.addView(startButton);
+        layout.addView(stopButton);
+
+        setContentView(layout);
+    }
+}            );
             startActivity(intent);
         });
 
