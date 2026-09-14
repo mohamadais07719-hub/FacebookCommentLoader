@@ -40,8 +40,11 @@ public class MainActivity extends Activity {
         startButton.setText("تشغيل");
 
         startButton.setOnClickListener(v -> {
-            CommentAccessibilityService.startLoader();
-            info.setText("الخدمة تعمل الآن...");
+            if (CommentAccessibilityService.startLoader()) {
+                info.setText("الخدمة تعمل الآن...");
+            } else {
+                info.setText("فعّل خدمة إمكانية الوصول أولاً.");
+            }
         });
 
         Button stopButton = new Button(this);
